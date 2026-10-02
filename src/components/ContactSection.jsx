@@ -127,8 +127,12 @@ function ContactItem({ link, index, sp, onCopy }) {
       onClick={handleClick}
       className="cursor-pointer select-none">
       <div
-        className="flex items-center gap-6 py-4"
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+        className="flex items-center gap-6"
+        style={{
+          paddingTop: "clamp(8px, 1.6vh, 16px)",
+          paddingBottom: "clamp(8px, 1.6vh, 16px)",
+          borderBottom: "1px solid rgba(255,255,255,0.07)",
+        }}>
         <span
           style={{
             fontFamily: "'Barlow Condensed', sans-serif",
@@ -151,7 +155,7 @@ function ContactItem({ link, index, sp, onCopy }) {
           style={{
             fontFamily: "'Barlow Condensed', sans-serif",
             fontWeight: 900,
-            fontSize: "clamp(1.6rem, 3.5vw, 3rem)",
+            fontSize: "clamp(1.4rem, min(3.5vw, 5vh), 3rem)",
             letterSpacing: "-0.02em",
             textTransform: "uppercase",
             lineHeight: 1,
@@ -329,8 +333,14 @@ export default function ContactSection() {
 
           {/* Content */}
           <div
-            className="relative z-10 w-full flex flex-col gap-10"
-            style={{ maxWidth: 960, paddingLeft: hPad, paddingRight: hPad }}>
+            className="relative z-10 w-full flex flex-col"
+            style={{
+              maxWidth: 960,
+              paddingLeft: hPad,
+              paddingRight: hPad,
+              gap: "clamp(14px, 3vh, 40px)",
+              paddingBottom: 64, // keep the last link clear of the footer
+            }}>
             <motion.div
               style={{ opacity: headOp }}
               className="flex items-center gap-4">
@@ -355,7 +365,7 @@ export default function ContactSection() {
                 style={{
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 900,
-                  fontSize: "clamp(3rem, 9vw, 8rem)",
+                  fontSize: "clamp(2.6rem, min(9vw, 11vh), 8rem)",
                   letterSpacing: "-0.03em",
                   textTransform: "uppercase",
                   lineHeight: 0.88,
