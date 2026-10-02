@@ -1,0 +1,197 @@
+=====================================================================
+  SUSHMITHA P - PORTFOLIO WEBSITE
+  Features Overview & Recruiter / Interview Talking Points
+=====================================================================
+
+
+---------------------------------------------------------------------
+PART 1: TECH STACK
+---------------------------------------------------------------------
+
+- React 19              : UI built as reusable components
+- Vite 8                : Build tool and dev server (fast reloads, optimised build)
+- Tailwind CSS 4        : Utility-first styling (via @tailwindcss/vite plugin)
+- Framer Motion 12      : All animations (scroll-linked, entry, hover, exit)
+- Lenis                 : Smooth scrolling
+- React Router DOM 7    : Client-side routing (home page + project detail pages)
+- ESLint 9              : Code quality (with React Hooks rules)
+- Google Fonts          : Barlow / Barlow Condensed typography
+
+
+---------------------------------------------------------------------
+PART 2: FEATURES BUILT INTO THE WEBSITE
+---------------------------------------------------------------------
+
+1. INTRO LOADER (Loader.jsx)
+   - Animated 0-100 counter driven by requestAnimationFrame with a
+     custom easing curve, followed by a wipe-out transition.
+   - Locks page scroll while loading and releases it when done.
+   - Shown only once per browser session (stored in sessionStorage),
+     so returning to the home page does not replay it.
+
+2. HERO SECTION (HeroSection.jsx)
+   - "Glitch / scramble" text effect: letters cycle through random
+     characters before settling into the real text.
+   - Rotating role / tagline text that changes every few seconds
+     with AnimatePresence enter/exit animations.
+   - The hero is fixed in place and scales down + fades out as the
+     user scrolls, while the projects section slides up over it.
+
+3. SELECTED WORK / PROJECTS (ProductsSection.jsx, ProductBlock.jsx)
+   - Projects are data-driven: all content lives in one file
+     (src/data/products.js). Adding a project = adding one object.
+   - Three real projects: Kotnani Global (Next.js), MAP Systems
+     (760+ page production site), Sanopix (corporate site).
+   - Alternating left/right layout, reveal-on-scroll animations,
+     hover state with each project's own accent colour.
+   - On mobile (detected with matchMedia), cards show their
+     "active" coloured state by default since there is no hover.
+
+4. PROJECT CASE STUDY PAGES (ProjectDetail.jsx)
+   - Dynamic route "/:id" - one template renders every project.
+   - Unknown project URLs redirect safely back to the home page.
+   - Sections: Overview, Technologies, Key Contributions, showcase
+     image, "Visit Live Site" link, and a "Next Project" link that
+     loops through all projects.
+   - Parallax hero image that zooms and fades on scroll.
+
+5. CUSTOM PAGE TRANSITIONS (PageTransition.jsx)
+   - Built with React Context so any component can call
+     navigateWithTransition(path).
+   - A panel animates over the screen, the route changes underneath,
+     then the panel animates away - timed with precise phases
+     (fade-in, hold, fade-out) and cleaned-up timers.
+
+6. SMOOTH SCROLL + SCROLL POSITION MEMORY (SmoothScroll.jsx)
+   - Lenis smooth scrolling across the site.
+   - Remembers where the user was on the home page; when they come
+     back from a project page, they land in the same spot.
+   - Project pages always open at the top.
+
+7. SKILLS SECTION (SkillsSection.jsx)
+   - Four skill groups: Frontend, SEO & Performance,
+     Backend & Database, Tools & AI.
+   - Sticky, scroll-driven section where each group is highlighted
+     in turn with its own colour, glow and spring animation.
+
+8. ABOUT SECTION (AboutSection.jsx)
+   - "Scroll-to-reveal" headline: each word lights up from dim and
+     blurred to sharp as the user scrolls ("I build websites that
+     load fast, rank well and scale cleanly.").
+   - Key words get a glow highlight.
+   - Animated stats: 2.9 years experience, 760+ page site
+     maintained, 100+ page sites built.
+   - Fully responsive using clamp() sizing from 320px to 1920px.
+
+9. EDUCATION SECTION (EducationSection.jsx)
+   - Timeline of B.Com, NxtWave Frontend Program, and MCA
+     (currently pursuing), with a scroll-progress line and
+     in-view reveal animations.
+
+10. CONTACT SECTION (ContactSection.jsx)
+   - Email, GitHub and LinkedIn links.
+   - Click-to-copy email using the Clipboard API, with a
+     "Copied to clipboard" toast notification.
+
+11. CUSTOM CURSOR (Cursor.jsx)
+   - Spring-following ring cursor with a fading trail effect.
+   - Trail updates are batched in requestAnimationFrame and capped
+     (8 points) for performance.
+   - Automatically disabled on touch devices.
+
+12. SEO SETUP (index.html)
+   - Descriptive title and meta description.
+   - Open Graph and Twitter card tags for link previews.
+   - JSON-LD structured data (schema.org "Person") listing name,
+     job title, location, social profiles and skills.
+   - Font preconnect hints for faster font loading.
+
+13. RESPONSIVE DESIGN
+   - Mobile-first Tailwind breakpoints, clamp()-based typography,
+     touch detection, and layouts that collapse to one column on
+     smaller screens.
+
+
+---------------------------------------------------------------------
+PART 3: TALKING POINTS IF A RECRUITER ASKS ABOUT THIS WEBSITE
+---------------------------------------------------------------------
+
+Q: "Tell me about your portfolio website."
+   - It is a single-page React application built with Vite, Tailwind
+     CSS and Framer Motion. It showcases my real client work (MAP
+     Systems, Sanopix, Kotnani Global) as case studies, along with
+     my skills, education and contact details.
+   - I focused on three things I also work on in my job: a fast,
+     smooth user experience, clean reusable components, and SEO.
+
+Q: "Why did you choose React + Vite instead of plain HTML?"
+   - React lets me build each section as a reusable component and
+     keep project content in one data file, so one ProjectDetail
+     template powers every case study page.
+   - Vite gives very fast development reloads and an optimised
+     production build.
+
+Q: "What was the most challenging part?"
+   - Coordinating scroll-driven animations with smooth scrolling and
+     routing. For example: remembering the home page scroll position
+     when a user opens a project and comes back, and building a page
+     transition that hides the route change smoothly.
+   - Making heavy animations feel smooth: using requestAnimationFrame,
+     spring physics, batching cursor-trail updates, and running
+     reveal animations only once.
+
+Q: "How did you handle performance?"
+   - Animations use transform and opacity (GPU friendly) instead of
+     layout properties.
+   - The loader plays only once per session.
+   - Custom cursor and hover-only effects are disabled on touch
+     devices.
+   - Fonts use preconnect and display=swap.
+
+Q: "How did you handle SEO for a React single-page app?"
+   - Proper title, meta description, Open Graph and Twitter tags,
+     and JSON-LD Person schema in index.html - the same technical
+     SEO work I do on production sites (schema, metadata, canonical
+     URLs, Core Web Vitals).
+
+Q: "Is it responsive?"
+   - Yes. Tailwind breakpoints, clamp() for fluid font sizes and
+     spacing, matchMedia to detect mobile/touch devices, and
+     touch-friendly fallbacks for hover-based interactions.
+
+Q: "How would you add a new project?"
+   - Add one object to src/data/products.js (name, description,
+     highlights, tech stack, live URL, accent colour, thumbnail).
+     The project card and its case-study page are generated
+     automatically.
+
+Q: "What would you improve next?"
+   - Lazy-load / code-split the project detail page and convert
+     thumbnails to WebP for smaller downloads.
+   - Add per-page titles and meta tags for each case study
+     (e.g. with a head-management library) or move to Next.js for
+     server-side rendering.
+   - Add a "reduced motion" mode (prefers-reduced-motion) for
+     accessibility, and keyboard focus styles.
+   - Add a downloadable resume and a contact form.
+
+Q: "Did you design it yourself?"
+   - Be honest: the design and animation style was adapted from an
+     existing experimental portfolio (credited in the README). I
+     implemented it in React, customised the content, colours,
+     sections and data structure, and added my own projects,
+     SEO setup and responsive behaviour.
+     (Recruiters value honesty - explain clearly what you built
+     and what you learned.)
+
+
+---------------------------------------------------------------------
+PART 4: ONE-LINE SUMMARY (for resume / quick intro)
+---------------------------------------------------------------------
+
+"A responsive, animated developer portfolio built with React 19,
+Vite, Tailwind CSS, Framer Motion and Lenis - featuring data-driven
+project case studies, custom page transitions, scroll-driven
+animations and SEO-ready structured data."
+
+=====================================================================
